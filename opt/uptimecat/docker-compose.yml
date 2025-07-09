@@ -1,0 +1,17 @@
+version: '3.8' # Recommended and modern Docker Compose file format version
+services:
+  uptimecat:
+    image: ghcr.io/calico1231/uptimecat:main
+    container_name: uptimecat
+    ports:
+      # Maps host port 8080 to container port 8080.
+      # This means you'll access the application in your browser via http://your_server_ip:8080
+      # Ensure your uptimecat application inside the Docker image listens on port 8080.
+      - "8080:8080" 
+    # If your uptimecat application needs to store any persistent data
+    # (like configuration, logs, or a small database),
+    # uncomment the 'volumes' section below and adjust the paths.
+    # If uptimecat is stateless and doesn't need to save anything, you can omit this section.
+    # volumes:
+    #   - ./data:/app/data # Example: Maps a 'data' folder in your current directory to '/app/data' inside the container
+    restart: unless-stopped
